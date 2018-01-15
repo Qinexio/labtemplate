@@ -28,7 +28,7 @@ exports.findByTitle = function (req, res) {
   let toFindTitle = req.params.title;
   let limitNum = req.params.limit;
   let offsetNum = (req.params.offset-1)*limitNum;
-	photo.findAll({here: {title:{[Op.like]:toFindTitle},pending:{[Op.not]:false}},limit:limitNum,offset:offsetNum}).then(photo => {
+	photo.findAll({where: {title:{[Op.like]:toFindTitle},pending:{[Op.not]:false}},limit:limitNum,offset:offsetNum}).then(photo => {
     if (!photo) {
       return res.status(400).send({
         message: 'photo Not Found',

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../service/';
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.less']
 })
-export class HomeComponent implements OnInit {
+export class AdminComponent implements OnInit {
   user: String;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.get('api/photo/').subscribe(res => {
+    this.apiService.get('api/user/').subscribe(res => {
        this.user = JSON.stringify(res);
     });
   }

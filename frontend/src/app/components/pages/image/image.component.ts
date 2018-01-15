@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../service/';
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  selector: 'app-image',
+  templateUrl: './image.component.html',
+  styleUrls: ['./image.component.less']
 })
-export class HomeComponent implements OnInit {
+export class ImageComponent implements OnInit {
   user: String;
   constructor(private apiService: ApiService) { }
 

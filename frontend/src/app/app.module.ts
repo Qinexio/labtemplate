@@ -15,6 +15,11 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components';
+import { AboutComponent } from './components';
+import { UploadComponent } from './components';
+import { AdminComponent } from './components';
+import { ImageComponent } from './components';
+
 
 // used to create fake backend
 import { fakeBackendProvider } from './service';
@@ -24,7 +29,11 @@ import { BaseRequestOptions } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+	AboutComponent,
+	ImageComponent,
+	UploadComponent,
+	AdminComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,12 +1,23 @@
 <div class="ui top fixed menu inverted large">
   <a class="item" (click)="sidebar.toggle()">
-    <i class="sidebar icon"></i> Menu
+    <i class="sidebar icon"></i>Menu
   </a>
+  
+<div class="ui search">
+  <div class="ui icon input">
+    <input class="prompt" type="text" placeholder="Search...">
+    <i class="search icon"></i>
+  </div>
+  <div class="results"></div>
+</div>
+  
 </div>
 <sui-sidebar-container class="ui bottom attached segment">
   <sui-sidebar class="inverted vertical" #sidebar>
-    <a class="item">1</a>
-    <a class="item">2</a>
+	<a href="home" class="item">Home</a>
+    <a href="upload" class="item">Upload</a>
+	<a href="admin" class="item">Admin</a>
+	<a href="about" class="item">About</a>
   </sui-sidebar>
   <sui-sidebar-sibling [isDimmedWhenVisible]="true">
     <router-outlet></router-outlet>
