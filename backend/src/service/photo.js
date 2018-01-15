@@ -9,7 +9,7 @@ exports.list = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  res.jsonp(photo.create(req.body, {fields: ['title','description','extensionId']));
+    res.jsonp(photo.create(req.body, { fields: ['title', 'description', 'extensionId'] }));
 };
 
 exports.findById = function (req, res) {
@@ -27,8 +27,8 @@ exports.findById = function (req, res) {
 exports.findByTitle = function (req, res) {
   let toFindTitle = req.params.title;
   let limitNum = req.params.limit;
-  let offsetNum = req.params.offset*limitNum;
-	photo.findAll(where: {title:{[Op.like]:toFindTitle},pending:{[Op.not]:false}},limit:limitNum,offset:offsetNum).then(photo => {
+  let offsetNum = (req.params.offset-1)*limitNum;
+	photo.findAll({here: {title:{[Op.like]:toFindTitle},pending:{[Op.not]:false}},limit:limitNum,offset:offsetNum}).then(photo => {
     if (!photo) {
       return res.status(400).send({
         message: 'photo Not Found',
@@ -39,7 +39,7 @@ exports.findByTitle = function (req, res) {
 };
 
 exports.findByPending = function (req, res) {
-  photo.findAll(where: {pending : false}).then(photo => {
+  photo.findAll({where: {pending : false}}).then(photo => {
     if (!photo) {
       return res.status(400).send({
         message: 'photo Not Found',
@@ -52,7 +52,7 @@ exports.findByPending = function (req, res) {
 exports.findTop = function (req, res) {
 	let limitNum = req.params.limit;
 	let offsetNum = req.params.offset*limitNum;
-  photo.findAll(where:{pending:{[Op.not]:false},order: 'rating DESC'},limit:limitNum,offset:offsetNum).then(photo => {
+  photo.findAll({where:{pending:{[Op.not]:false},order: 'rating DESC'},limit:limitNum,offset:offsetNum}).then(photo => {
     if (!photo) {
       return res.status(400).send({
         message: 'photo Not Found',
@@ -62,8 +62,8 @@ exports.findTop = function (req, res) {
   });
 };
 
-exports.update = function (req, res) {
-  let id = req.params.id;
+exports.updateBool = function (req, res) {
+    let id = req.params.id;
   photo.findById(req.params.id)
     .then(photo => {
       if (!photo) {
@@ -72,7 +72,7 @@ exports.update = function (req, res) {
         });
       }
       return photo
-        .update(req.body)
+          .update({ pending: true })
         .then(() => res.status(204).send())
         .catch(error => res.status(400).send(error));
     })

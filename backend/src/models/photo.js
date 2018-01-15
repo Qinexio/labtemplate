@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 	}
   }, {
     classMethods: {
-      associate: function(models),
+      associate: function(models)
 	  {
 			photo.belongsTo(models.extension,
 			{

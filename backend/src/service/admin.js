@@ -27,7 +27,7 @@ exports.findById = function (req, res) {
 exports.findByNameAndPass = function (req, res) {
   let toFindName = req.params.name;
   let toFindPass = req.params.pass;
-  admin.findOne(where: {username : toFindName, password: toFindPass}).then(admin => {
+  admin.findOne({where: {username : toFindName, password: toFindPass}}).then(admin => {
     if (!admin) {
       return res.status(400).send({
         message: 'admin Not Found',

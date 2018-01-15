@@ -2,6 +2,7 @@
 
 const extension = require('../models').extension;
 
+
 exports.list = function (req, res) {
   extension.findAll().then(extension => {
     res.jsonp(extension);
@@ -24,9 +25,9 @@ exports.findById = function (req, res) {
   });
 };
 
-exports.findByName = function (req, res) {
+exports.findByExt = function (req, res) {
   let toFindName = req.params.name;
-  extension.findOne(where: {name : toFindName}).then(extension => {
+  extension.findAll({where: {name : toFindName}}).then(extension => {
     if (!extension) {
       return res.status(400).send({
         message: 'Extension Not Found',
